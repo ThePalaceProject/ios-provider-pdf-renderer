@@ -10,19 +10,19 @@ import Foundation
 
 // the items that are marked required are needed to
 // recreate an annotation in PSPDFKit later
-public class MinitexPDFAnnotation: Codable {
+public class PDFAnnotation: Codable {
   // required
-  var bbox: [Double]?
+  public var bbox: [Double]?
   // optional
-  var color: String?
+  public var color: String?
   // optional
-  var opacity: Float?
+  public var opacity: Float?
   // required
-  var pageIndex: UInt?
+  public var pageIndex: UInt?
   // required
-  var rects: [[Double]]?
+  public var rects: [[Double]]?
   // required
-  var type: String?
+  public var type: String?
   // optional
   // this value cannot be set from PSPDFKit
   //var v: Int?
@@ -43,12 +43,11 @@ public protocol MinitexPDFViewControllerDelegate: class {
   func userDidNavigate(page: Int)
   func saveBookmarks(pageNumbers: [UInt])
   func saveAnnotations(annotationsData: [Data])
-  func saveAnnotations(annotations: [MinitexPDFAnnotation])
+  func saveAnnotations(annotations: [PDFAnnotation])
 }
 
-public protocol MinitexViewControllerFactory {
+public protocol MinitexPDFViewControllerFactory {
   func createViewController(documentURL: URL, openToPage page: UInt, bookmarks pages: [UInt],
-  annotations annotationObjects: [MinitexPDFAnnotation],
-  PSPDFKitLicense: String, delegate: MinitexPDFViewControllerDelegate) -> UIViewController
+                            annotations annotationObjects: [PDFAnnotation],
+                            PSPDFKitLicense: String, delegate: MinitexPDFViewControllerDelegate) -> UIViewController
 }
-

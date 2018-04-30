@@ -10,7 +10,7 @@
 		52EB736D2092676E003E8D00 /* MinitexPDFProtocols.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EB73632092676D003E8D00 /* MinitexPDFProtocols.framework */; };
 		52EB73722092676E003E8D00 /* MinitexPDFProtocolsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EB73712092676E003E8D00 /* MinitexPDFProtocolsTests.swift */; };
 		52EB73742092676E003E8D00 /* MinitexPDFProtocols.h in Headers */ = {isa = PBXBuildFile; fileRef = 52EB73662092676E003E8D00 /* MinitexPDFProtocols.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		52EB737E2092678D003E8D00 /* MinitexBookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EB737D2092678D003E8D00 /* MinitexBookmark.swift */; };
+		52EB737E2092678D003E8D00 /* MinitexPDFProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EB737D2092678D003E8D00 /* MinitexPDFProtocols.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,7 +30,7 @@
 		52EB736C2092676E003E8D00 /* MinitexPDFProtocolsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MinitexPDFProtocolsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52EB73712092676E003E8D00 /* MinitexPDFProtocolsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinitexPDFProtocolsTests.swift; sourceTree = "<group>"; };
 		52EB73732092676E003E8D00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		52EB737D2092678D003E8D00 /* MinitexBookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinitexBookmark.swift; sourceTree = "<group>"; };
+		52EB737D2092678D003E8D00 /* MinitexPDFProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinitexPDFProtocols.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +75,7 @@
 			children = (
 				52EB73662092676E003E8D00 /* MinitexPDFProtocols.h */,
 				52EB73672092676E003E8D00 /* Info.plist */,
-				52EB737D2092678D003E8D00 /* MinitexBookmark.swift */,
+				52EB737D2092678D003E8D00 /* MinitexPDFProtocols.swift */,
 			);
 			path = MinitexPDFProtocols;
 			sourceTree = "<group>";
@@ -198,7 +198,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52EB737E2092678D003E8D00 /* MinitexBookmark.swift in Sources */,
+				52EB737E2092678D003E8D00 /* MinitexPDFProtocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,6 +354,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = MinitexPDFProtocols/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -381,6 +382,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = MinitexPDFProtocols/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
