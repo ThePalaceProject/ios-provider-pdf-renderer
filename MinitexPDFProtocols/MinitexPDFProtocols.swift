@@ -39,6 +39,17 @@ public class PDFAnnotation: Codable {
   }
 }
 
+/*
+@objc public protocol PDFViewController: class {
+  /*
+   init(documentURL: URL, openToPage page: UInt, bookmarks pages: [UInt],
+   annotations annotationObjects: [PDFAnnotation],
+   PSPDFKitLicense: String, delegate: MinitexPDFViewControllerDelegate?)
+   */
+  init(dictionary: [String: Any])
+}
+ */
+
 public protocol MinitexPDFViewControllerDelegate: class {
   func userDidNavigate(page: Int)
   func saveBookmarks(pageNumbers: [UInt])
@@ -47,7 +58,15 @@ public protocol MinitexPDFViewControllerDelegate: class {
 }
 
 public protocol MinitexPDFViewControllerFactory {
-  func createViewController(documentURL: URL, openToPage page: UInt, bookmarks pages: [UInt],
+  func createPDFViewController(documentURL: URL, openToPage page: UInt, bookmarks pages: [UInt],
                             annotations annotationObjects: [PDFAnnotation],
-                            PSPDFKitLicense: String, delegate: MinitexPDFViewControllerDelegate) -> UIViewController
+                            PSPDFKitLicense: String, delegate: MinitexPDFViewControllerDelegate) -> UIViewController?
+
+  //func createViewController(dictionary: Dictionary<String, Any>) -> UIViewController?
+
+ /*
+  func createPDFViewController(documentURL: URL, openToPage page: UInt, bookmarks pages: [UInt],
+                            annotations annotationObjects: [PDFAnnotation],
+                            PSPDFKitLicense: String, delegate: MinitexPDFViewControllerDelegate) -> PDFViewController?
+ */
 }
