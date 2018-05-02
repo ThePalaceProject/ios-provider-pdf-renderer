@@ -1,5 +1,5 @@
 //
-//  MinitexBookmark.swift
+//  MinitexPDFProtocols.swift
 //  MinitexPDFProtocols
 //
 //  Created by Vui Nguyen on 4/26/18.
@@ -39,16 +39,13 @@ public class PDFAnnotation: Codable {
   }
 }
 
-/*
-@objc public protocol PDFViewController: class {
-  /*
-   init(documentURL: URL, openToPage page: UInt, bookmarks pages: [UInt],
-   annotations annotationObjects: [PDFAnnotation],
-   PSPDFKitLicense: String, delegate: MinitexPDFViewControllerDelegate?)
-   */
+
+@objc public protocol MinitexPDFViewController: class {
+  // we have to pass in a dictionary because @objc protocol function
+  // cannot accept multiple parameters
   init(dictionary: [String: Any])
 }
- */
+
 
 public protocol MinitexPDFViewControllerDelegate: class {
   func userDidNavigate(page: Int)
@@ -57,16 +54,15 @@ public protocol MinitexPDFViewControllerDelegate: class {
   func saveAnnotations(annotations: [PDFAnnotation])
 }
 
-public protocol MinitexPDFViewControllerFactory {
-  func createPDFViewController(documentURL: URL, openToPage page: UInt, bookmarks pages: [UInt],
-                            annotations annotationObjects: [PDFAnnotation],
-                            PSPDFKitLicense: String, delegate: MinitexPDFViewControllerDelegate) -> UIViewController?
+public class MinitexPDFViewControllerFactory {
+  public static func createPDFViewController(dictionary: [String: Any]) -> MinitexPDFViewController? {
 
-  //func createViewController(dictionary: Dictionary<String, Any>) -> UIViewController?
+    guard let pdfViewControllerClass = NSClassFromString("PDF.PDFViewController")
+                                        as? MinitexPDFViewController.Type else {
+      return nil
+    }
 
- /*
-  func createPDFViewController(documentURL: URL, openToPage page: UInt, bookmarks pages: [UInt],
-                            annotations annotationObjects: [PDFAnnotation],
-                            PSPDFKitLicense: String, delegate: MinitexPDFViewControllerDelegate) -> PDFViewController?
- */
+    let pdfViewController = pdfViewControllerClass.init(dictionary: dictionary)
+    return pdfViewController
+  }
 }
