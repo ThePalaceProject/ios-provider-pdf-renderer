@@ -344,6 +344,7 @@
 		52EB73782092676E003E8D00 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BITCODE_GENERATION_MODE = bitcode;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
@@ -372,6 +373,7 @@
 		52EB73792092676E003E8D00 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BITCODE_GENERATION_MODE = bitcode;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
