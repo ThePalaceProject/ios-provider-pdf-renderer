@@ -12,7 +12,7 @@ import Foundation
 // recreate an annotation in PSPDFKit later
 public class MinitexPDFAnnotation: Codable {
   // required
-  public var bbox: [Double]?
+  public var bbox: String?
   // optional
   public var color: String?
   // optional
@@ -20,7 +20,7 @@ public class MinitexPDFAnnotation: Codable {
   // required
   public var pageIndex: UInt?
   // required
-  public var rects: [[Double]]?
+  public var rects: [String]?
   // required
   public var type: String?
   // optional
