@@ -12,25 +12,25 @@ import Foundation
 // recreate an annotation in PSPDFKit later
 public class MinitexPDFAnnotation: Codable {
   // required
-  public let pageIndex: UInt?
+  public let pageIndex: UInt
   // required
-  public let type: String?
+  public let type: String
   // required
-  public let bbox: String?
+  public let bbox: String
   // required
-  public let rects: [String]?
+  public let rects: [String]
+
   // optional
   public let color: String?
   // optional
   public let opacity: Float?
+  // optional
+  // we store this in case the field parsing fails, then we have the original JSON
+  public let JSONData: Data?
 
   // optional
   // this value cannot be set in PSPDFKit
   //var v: Int?
-
-  // optional
-  // we store this in case the field parsing fails, then we have the original JSON
-  public let JSONData: Data?
 
   public init(pageIndex: UInt, type: String, bbox: String, rects: [String],
               color: String?, opacity: Float?, JSONData: Data?) {
@@ -55,7 +55,6 @@ public class MinitexPDFAnnotation: Codable {
 public protocol MinitexPDFViewControllerDelegate: class {
   func userDidNavigate(page: Int)
   func saveBookmarks(pageNumbers: [UInt])
-  func saveAnnotations(annotationsData: [Data])
   func saveAnnotations(annotations: [MinitexPDFAnnotation])
 }
 
