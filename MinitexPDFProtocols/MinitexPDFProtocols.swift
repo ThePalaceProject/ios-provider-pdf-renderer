@@ -10,7 +10,7 @@ import Foundation
 
 // the items that are marked required are needed to
 // recreate an annotation in PSPDFKit later
-public class MinitexPDFAnnotation: Codable {
+@objc public class MinitexPDFAnnotation: NSObject, Codable {
   // required
   public let pageIndex: UInt
   // required
@@ -48,19 +48,19 @@ public class MinitexPDFAnnotation: Codable {
 @objc public protocol MinitexPDFViewController: class {
   // we have to pass in a dictionary because @objc protocol function
   // cannot accept multiple parameters
-  init(dictionary: [String: Any])
+  @objc init(dictionary: [String: Any])
 }
 
 
-public protocol MinitexPDFViewControllerDelegate: class {
-  func userDidNavigate(page: Int)
-  func saveBookmarks(pageNumbers: [UInt])
-  func saveAnnotations(annotations: [MinitexPDFAnnotation])
+@objc public protocol MinitexPDFViewControllerDelegate: class {
+  @objc func userDidNavigate(page: Int)
+  @objc func saveBookmarks(pageNumbers: [UInt])
+  @objc func saveAnnotations(annotations: [MinitexPDFAnnotation])
 }
 
 
-public class MinitexPDFViewControllerFactory {
-  public static func createPDFViewController(dictionary: [String: Any]) -> MinitexPDFViewController? {
+@objc public class MinitexPDFViewControllerFactory: NSObject {
+  @objc public static func createPDFViewController(dictionary: [String: Any]) -> MinitexPDFViewController? {
 
     guard let pdfViewControllerClass = NSClassFromString("PDF.PDFViewController")
                                         as? MinitexPDFViewController.Type else {
