@@ -56,6 +56,7 @@ import Foundation
   @objc func userDidNavigate(page: Int)
   @objc func saveBookmarks(pageNumbers: [UInt])
   @objc func saveAnnotations(annotations: [MinitexPDFAnnotation])
+  @objc func willMoveToMinitexParentController(parent: UIViewController?)
 }
 
 
