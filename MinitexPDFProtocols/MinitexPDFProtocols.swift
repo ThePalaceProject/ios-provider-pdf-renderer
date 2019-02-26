@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 // the items that are marked required are needed to
 // recreate an annotation in PSPDFKit later

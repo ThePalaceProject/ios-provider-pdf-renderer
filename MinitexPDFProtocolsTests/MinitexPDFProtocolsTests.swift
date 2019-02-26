@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import MinitexPDFProtocols
+@testable import PDFRendererProvider
 
 class MinitexPDFProtocolsTests: XCTestCase {
     

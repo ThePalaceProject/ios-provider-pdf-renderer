@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "52EB73622092676D003E8D00"
-               BuildableName = "MinitexPDFProtocols.framework"
-               BlueprintName = "MinitexPDFProtocols"
-               ReferencedContainer = "container:MinitexPDFProtocols.xcodeproj">
+               BuildableName = "PDFRendererProvider.framework"
+               BlueprintName = "PDFRendererProvider"
+               ReferencedContainer = "container:PDFRendererProvider.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "52EB736B2092676E003E8D00"
-               BuildableName = "MinitexPDFProtocolsTests.xctest"
-               BlueprintName = "MinitexPDFProtocolsTests"
-               ReferencedContainer = "container:MinitexPDFProtocols.xcodeproj">
+               BuildableName = "PDFRendererProviderTests.xctest"
+               BlueprintName = "PDFRendererProviderTests"
+               ReferencedContainer = "container:PDFRendererProvider.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "52EB73622092676D003E8D00"
-            BuildableName = "MinitexPDFProtocols.framework"
-            BlueprintName = "MinitexPDFProtocols"
-            ReferencedContainer = "container:MinitexPDFProtocols.xcodeproj">
+            BuildableName = "PDFRendererProvider.framework"
+            BlueprintName = "PDFRendererProvider"
+            ReferencedContainer = "container:PDFRendererProvider.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -65,9 +65,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "52EB73622092676D003E8D00"
-            BuildableName = "MinitexPDFProtocols.framework"
-            BlueprintName = "MinitexPDFProtocols"
-            ReferencedContainer = "container:MinitexPDFProtocols.xcodeproj">
+            BuildableName = "PDFRendererProvider.framework"
+            BlueprintName = "PDFRendererProvider"
+            ReferencedContainer = "container:PDFRendererProvider.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -83,9 +83,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "52EB73622092676D003E8D00"
-            BuildableName = "MinitexPDFProtocols.framework"
-            BlueprintName = "MinitexPDFProtocols"
-            ReferencedContainer = "container:MinitexPDFProtocols.xcodeproj">
+            BuildableName = "PDFRendererProvider.framework"
+            BlueprintName = "PDFRendererProvider"
+            ReferencedContainer = "container:PDFRendererProvider.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

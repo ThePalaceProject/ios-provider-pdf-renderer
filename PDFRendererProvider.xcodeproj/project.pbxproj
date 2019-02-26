@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		52EB736D2092676E003E8D00 /* MinitexPDFProtocols.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EB73632092676D003E8D00 /* MinitexPDFProtocols.framework */; };
+		52EB736D2092676E003E8D00 /* PDFRendererProvider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EB73632092676D003E8D00 /* PDFRendererProvider.framework */; };
 		52EB73722092676E003E8D00 /* MinitexPDFProtocolsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EB73712092676E003E8D00 /* MinitexPDFProtocolsTests.swift */; };
 		52EB73742092676E003E8D00 /* MinitexPDFProtocols.h in Headers */ = {isa = PBXBuildFile; fileRef = 52EB73662092676E003E8D00 /* MinitexPDFProtocols.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		52EB737E2092678D003E8D00 /* MinitexPDFProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EB737D2092678D003E8D00 /* MinitexPDFProtocols.swift */; };
@@ -24,10 +24,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		52EB73632092676D003E8D00 /* MinitexPDFProtocols.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MinitexPDFProtocols.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		52EB73632092676D003E8D00 /* PDFRendererProvider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PDFRendererProvider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52EB73662092676E003E8D00 /* MinitexPDFProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MinitexPDFProtocols.h; sourceTree = "<group>"; };
 		52EB73672092676E003E8D00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		52EB736C2092676E003E8D00 /* MinitexPDFProtocolsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MinitexPDFProtocolsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		52EB736C2092676E003E8D00 /* PDFRendererProviderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PDFRendererProviderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52EB73712092676E003E8D00 /* MinitexPDFProtocolsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinitexPDFProtocolsTests.swift; sourceTree = "<group>"; };
 		52EB73732092676E003E8D00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52EB737D2092678D003E8D00 /* MinitexPDFProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinitexPDFProtocols.swift; sourceTree = "<group>"; };
@@ -45,7 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52EB736D2092676E003E8D00 /* MinitexPDFProtocols.framework in Frameworks */,
+				52EB736D2092676E003E8D00 /* PDFRendererProvider.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,8 +64,8 @@
 		52EB73642092676D003E8D00 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				52EB73632092676D003E8D00 /* MinitexPDFProtocols.framework */,
-				52EB736C2092676E003E8D00 /* MinitexPDFProtocolsTests.xctest */,
+				52EB73632092676D003E8D00 /* PDFRendererProvider.framework */,
+				52EB736C2092676E003E8D00 /* PDFRendererProviderTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -103,9 +103,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		52EB73622092676D003E8D00 /* MinitexPDFProtocols */ = {
+		52EB73622092676D003E8D00 /* PDFRendererProvider */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 52EB73772092676E003E8D00 /* Build configuration list for PBXNativeTarget "MinitexPDFProtocols" */;
+			buildConfigurationList = 52EB73772092676E003E8D00 /* Build configuration list for PBXNativeTarget "PDFRendererProvider" */;
 			buildPhases = (
 				52EB735E2092676D003E8D00 /* Sources */,
 				52EB735F2092676D003E8D00 /* Frameworks */,
@@ -116,14 +116,14 @@
 			);
 			dependencies = (
 			);
-			name = MinitexPDFProtocols;
+			name = PDFRendererProvider;
 			productName = MinitexPDFProtocols;
-			productReference = 52EB73632092676D003E8D00 /* MinitexPDFProtocols.framework */;
+			productReference = 52EB73632092676D003E8D00 /* PDFRendererProvider.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		52EB736B2092676E003E8D00 /* MinitexPDFProtocolsTests */ = {
+		52EB736B2092676E003E8D00 /* PDFRendererProviderTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 52EB737A2092676E003E8D00 /* Build configuration list for PBXNativeTarget "MinitexPDFProtocolsTests" */;
+			buildConfigurationList = 52EB737A2092676E003E8D00 /* Build configuration list for PBXNativeTarget "PDFRendererProviderTests" */;
 			buildPhases = (
 				52EB73682092676E003E8D00 /* Sources */,
 				52EB73692092676E003E8D00 /* Frameworks */,
@@ -134,9 +134,9 @@
 			dependencies = (
 				52EB736F2092676E003E8D00 /* PBXTargetDependency */,
 			);
-			name = MinitexPDFProtocolsTests;
+			name = PDFRendererProviderTests;
 			productName = MinitexPDFProtocolsTests;
-			productReference = 52EB736C2092676E003E8D00 /* MinitexPDFProtocolsTests.xctest */;
+			productReference = 52EB736C2092676E003E8D00 /* PDFRendererProviderTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -151,14 +151,15 @@
 				TargetAttributes = {
 					52EB73622092676D003E8D00 = {
 						CreatedOnToolsVersion = 9.3;
-						LastSwiftMigration = 0930;
+						LastSwiftMigration = 1010;
 					};
 					52EB736B2092676E003E8D00 = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
-			buildConfigurationList = 52EB735D2092676D003E8D00 /* Build configuration list for PBXProject "MinitexPDFProtocols" */;
+			buildConfigurationList = 52EB735D2092676D003E8D00 /* Build configuration list for PBXProject "PDFRendererProvider" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -170,8 +171,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				52EB73622092676D003E8D00 /* MinitexPDFProtocols */,
-				52EB736B2092676E003E8D00 /* MinitexPDFProtocolsTests */,
+				52EB73622092676D003E8D00 /* PDFRendererProvider */,
+				52EB736B2092676E003E8D00 /* PDFRendererProviderTests */,
 			);
 		};
 /* End PBXProject section */
@@ -215,7 +216,7 @@
 /* Begin PBXTargetDependency section */
 		52EB736F2092676E003E8D00 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 52EB73622092676D003E8D00 /* MinitexPDFProtocols */;
+			target = 52EB73622092676D003E8D00 /* PDFRendererProvider */;
 			targetProxy = 52EB736E2092676E003E8D00 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -349,7 +350,7 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = K97KHP3ZWG;
+				DEVELOPMENT_TEAM = LDV59YSPLA;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -365,7 +366,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -378,7 +379,7 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = K97KHP3ZWG;
+				DEVELOPMENT_TEAM = LDV59YSPLA;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -393,7 +394,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = edu.umn.minitex.simplye.MinitexPDFProtocols;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -412,7 +413,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = edu.umn.minitex.simplye.MinitexPDFProtocolsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -431,7 +432,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = edu.umn.minitex.simplye.MinitexPDFProtocolsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -439,7 +440,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		52EB735D2092676D003E8D00 /* Build configuration list for PBXProject "MinitexPDFProtocols" */ = {
+		52EB735D2092676D003E8D00 /* Build configuration list for PBXProject "PDFRendererProvider" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				52EB73752092676E003E8D00 /* Debug */,
@@ -448,7 +449,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		52EB73772092676E003E8D00 /* Build configuration list for PBXNativeTarget "MinitexPDFProtocols" */ = {
+		52EB73772092676E003E8D00 /* Build configuration list for PBXNativeTarget "PDFRendererProvider" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				52EB73782092676E003E8D00 /* Debug */,
@@ -457,7 +458,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		52EB737A2092676E003E8D00 /* Build configuration list for PBXNativeTarget "MinitexPDFProtocolsTests" */ = {
+		52EB737A2092676E003E8D00 /* Build configuration list for PBXNativeTarget "PDFRendererProviderTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				52EB737B2092676E003E8D00 /* Debug */,
