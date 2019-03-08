@@ -76,7 +76,7 @@ class BookshelfViewController: UITableViewController {
         let fileManager = FileManager.default
         let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let contents = try! fileManager.contentsOfDirectory(at: documentDirectory, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
-        documents = contents.flatMap { PDFDocument(url: $0) }
+        documents = contents.compactMap { PDFDocument(url: $0) }
 
         tableView.reloadData()
     }

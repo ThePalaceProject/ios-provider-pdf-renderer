@@ -14,18 +14,18 @@ import UIKit.UIGestureRecognizerSubclass
 @available(iOS 11.0, *)
 class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverPresentationControllerDelegate, PDFViewDelegate, ActionMenuViewControllerDelegate, SearchViewControllerDelegate, ThumbnailGridViewControllerDelegate, OutlineViewControllerDelegate, BookmarkViewControllerDelegate {
 
+    var delegate: MinitexPDFViewControllerDelegate?
 
-  required init?(file: URL,
-                 openToPage page: MinitexPDFPage?,
-                 bookmarks: [MinitexPDFPage]?,
-                 annotations: [MinitexPDFAnnotation]?) {
-    //..
-  }
-  
-  required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-  
+    required init?(file: URL,
+                   openToPage page: MinitexPDFPage?,
+                   bookmarks: [MinitexPDFPage]?,
+                   annotations: [MinitexPDFAnnotation]?) {
+        fatalError("This VC should only be initialized from a storyboard.")
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     var pdfDocument: PDFDocument?
 
@@ -39,7 +39,7 @@ class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverP
     @IBOutlet weak var pageNumberLabel: UILabel!
     @IBOutlet weak var pageNumberLabelContainer: UIView!
 
-    let tableOfContentsToggleSegmentedControl = UISegmentedControl(items: [#imageLiteral(resourceName: "Grid"), #imageLiteral(resourceName: "List"), #imageLiteral(resourceName: "Bookmark-N")])
+    let tableOfContentsToggleSegmentedControl = UISegmentedControl(items: [(#imageLiteral(resourceName: "Grid") as WrappedBundleImage).image, (#imageLiteral(resourceName: "List") as WrappedBundleImage).image, (#imageLiteral(resourceName: "Bookmark-N") as WrappedBundleImage).image])
     @IBOutlet weak var thumbnailGridViewConainer: UIView!
     @IBOutlet weak var outlineViewConainer: UIView!
     @IBOutlet weak var bookmarkViewConainer: UIView!
@@ -153,14 +153,14 @@ class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverP
     }
 
     private func resume() {
-        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "Chevron"), style: .plain, target: self, action: #selector(back(_:)))
-        let tableOfContentsButton = UIBarButtonItem(image: #imageLiteral(resourceName: "List"), style: .plain, target: self, action: #selector(showTableOfContents(_:)))
+        let backButton = UIBarButtonItem(image: (#imageLiteral(resourceName: "Chevron") as WrappedBundleImage).image, style: .plain, target: self, action: #selector(back(_:)))
+        let tableOfContentsButton = UIBarButtonItem(image: (#imageLiteral(resourceName: "List") as WrappedBundleImage).image, style: .plain, target: self, action: #selector(showTableOfContents(_:)))
         let actionButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(showActionMenu(_:)))
         navigationItem.leftBarButtonItems = [backButton, tableOfContentsButton, actionButton]
 
-        let brightnessButton = UIBarButtonItem(image: #imageLiteral(resourceName: "Brightness"), style: .plain, target: self, action: #selector(showAppearanceMenu(_:)))
-        let searchButton = UIBarButtonItem(image: #imageLiteral(resourceName: "Search"), style: .plain, target: self, action: #selector(showSearchView(_:)))
-        bookmarkButton = UIBarButtonItem(image: #imageLiteral(resourceName: "Bookmark-N"), style: .plain, target: self, action: #selector(addOrRemoveBookmark(_:)))
+        let brightnessButton = UIBarButtonItem(image: (#imageLiteral(resourceName: "Brightness") as WrappedBundleImage).image, style: .plain, target: self, action: #selector(showAppearanceMenu(_:)))
+        let searchButton = UIBarButtonItem(image: (#imageLiteral(resourceName: "Search") as WrappedBundleImage).image, style: .plain, target: self, action: #selector(showSearchView(_:)))
+        bookmarkButton = UIBarButtonItem(image: (#imageLiteral(resourceName: "Bookmark-N") as WrappedBundleImage).image, style: .plain, target: self, action: #selector(addOrRemoveBookmark(_:)))
         navigationItem.rightBarButtonItems = [bookmarkButton, searchButton, brightnessButton]
 
         pdfThumbnailViewContainer.alpha = 1
@@ -181,7 +181,7 @@ class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverP
         view.exchangeSubview(at: 0, withSubviewAt: 1)
         view.exchangeSubview(at: 0, withSubviewAt: 2)
 
-        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "Chevron"), style: .plain, target: self, action: #selector(back(_:)))
+        let backButton = UIBarButtonItem(image: (#imageLiteral(resourceName: "Chevron") as WrappedBundleImage).image, style: .plain, target: self, action: #selector(back(_:)))
         let tableOfContentsToggleBarButton = UIBarButtonItem(customView: tableOfContentsToggleSegmentedControl)
         let resumeBarButton = UIBarButtonItem(title: NSLocalizedString("Resume", comment: ""), style: .plain, target: self, action: #selector(resume(_:)))
         navigationItem.leftBarButtonItems = [backButton, tableOfContentsToggleBarButton]
@@ -250,10 +250,10 @@ class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverP
                 if let index = bookmarks.index(of: pageIndex) {
                     bookmarks.remove(at: index)
                     UserDefaults.standard.set(bookmarks, forKey: documentURL)
-                    bookmarkButton.image = #imageLiteral(resourceName: "Bookmark-N")
+                    bookmarkButton.image = (#imageLiteral(resourceName: "Bookmark-N") as WrappedBundleImage).image
                 } else {
                     UserDefaults.standard.set((bookmarks + [pageIndex]).sorted(), forKey: documentURL)
-                    bookmarkButton.image = #imageLiteral(resourceName: "Bookmark-P")
+                    bookmarkButton.image = (#imageLiteral(resourceName: "Bookmark-P") as WrappedBundleImage).image
                 }
             }
         }
@@ -302,7 +302,7 @@ class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverP
             let bookmarks = UserDefaults.standard.array(forKey: documentURL) as? [Int],
             let currentPage = pdfView.currentPage,
             let index = pdfDocument?.index(for: currentPage) {
-            bookmarkButton.image = bookmarks.contains(index) ? #imageLiteral(resourceName: "Bookmark-P") : #imageLiteral(resourceName: "Bookmark-N")
+            bookmarkButton.image = bookmarks.contains(index) ? (#imageLiteral(resourceName: "Bookmark-P") as WrappedBundleImage).image : (#imageLiteral(resourceName: "Bookmark-N") as WrappedBundleImage).image
         }
     }
 

@@ -40,7 +40,7 @@ class BookmarkViewController: UICollectionViewController, UICollectionViewDelega
         backgroundView.backgroundColor = .gray
         collectionView?.backgroundView = backgroundView
 
-        collectionView?.register(UINib(nibName: String(describing: ThumbnailGridCell.self), bundle: nil), forCellWithReuseIdentifier: "Cell")
+        collectionView?.register(UINib(nibName: String(describing: ThumbnailGridCell.self), bundle: Bundle.pdfRendererProvider()!), forCellWithReuseIdentifier: "Cell")
 
         NotificationCenter.default.addObserver(self, selector: #selector(userDefaultsDidChange(_:)), name: UserDefaults.didChangeNotification, object: nil)
         refreshData()

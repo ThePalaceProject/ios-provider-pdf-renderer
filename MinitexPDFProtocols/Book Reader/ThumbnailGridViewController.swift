@@ -38,7 +38,7 @@ class ThumbnailGridViewController: UICollectionViewController, UICollectionViewD
         backgroundView.backgroundColor = .gray
         collectionView?.backgroundView = backgroundView
 
-        collectionView?.register(UINib(nibName: String(describing: ThumbnailGridCell.self), bundle: nil), forCellWithReuseIdentifier: "Cell")
+        collectionView?.register(UINib(nibName: String(describing: ThumbnailGridCell.self), bundle: Bundle.pdfRendererProvider()!), forCellWithReuseIdentifier: "Cell")
     }
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {

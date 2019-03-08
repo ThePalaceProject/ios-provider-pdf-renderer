@@ -28,6 +28,7 @@
 		A9F4ED332232E8A3009B43BE /* SearchResultsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9F4ED212232E8A3009B43BE /* SearchResultsCell.xib */; };
 		A9F4ED342232E8A3009B43BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9F4ED222232E8A3009B43BE /* LaunchScreen.storyboard */; };
 		A9F4ED352232E8A3009B43BE /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F4ED232232E8A3009B43BE /* BookmarkViewController.swift */; };
+		A9F4ED392232F74D009B43BE /* MinitexUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F4ED382232F74D009B43BE /* MinitexUtilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		A9F4ED212232E8A3009B43BE /* SearchResultsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultsCell.xib; sourceTree = "<group>"; };
 		A9F4ED222232E8A3009B43BE /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A9F4ED232232E8A3009B43BE /* BookmarkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
+		A9F4ED382232F74D009B43BE /* MinitexUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinitexUtilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				52EB73662092676E003E8D00 /* MinitexPDFProtocols.h */,
 				52EB73672092676E003E8D00 /* Info.plist */,
 				52EB737D2092678D003E8D00 /* MinitexPDFProtocols.swift */,
+				A9F4ED382232F74D009B43BE /* MinitexUtilities.swift */,
 				A9F4ED112232E876009B43BE /* Book Reader */,
 			);
 			path = MinitexPDFProtocols;
@@ -268,6 +271,7 @@
 				A9F4ED2C2232E8A3009B43BE /* SearchResultsCell.swift in Sources */,
 				A9F4ED2D2232E8A3009B43BE /* SearchViewController.swift in Sources */,
 				A9F4ED242232E8A3009B43BE /* ThumbnailGridCell.swift in Sources */,
+				A9F4ED392232F74D009B43BE /* MinitexUtilities.swift in Sources */,
 				52EB737E2092678D003E8D00 /* MinitexPDFProtocols.swift in Sources */,
 				A9F4ED292232E8A3009B43BE /* AppearanceViewController.swift in Sources */,
 				A9F4ED2E2232E8A3009B43BE /* ThumbnailGridViewController.swift in Sources */,

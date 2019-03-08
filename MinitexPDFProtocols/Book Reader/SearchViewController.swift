@@ -31,7 +31,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, PDFDocum
         navigationItem.titleView = searchBar
 
         tableView.rowHeight = 88
-        tableView.register(UINib(nibName: String(describing: SearchResultsCell.self), bundle: nil), forCellReuseIdentifier: "Cell")
+        tableView.register(UINib(nibName: String(describing: SearchResultsCell.self), bundle: Bundle.pdfRendererProvider()!), forCellReuseIdentifier: "Cell")
     }
 
     override func viewWillAppear(_ animated: Bool) {
