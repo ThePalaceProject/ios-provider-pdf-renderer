@@ -24,7 +24,6 @@
 		A9F4ED2F2232E8A3009B43BE /* BookshelfCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F4ED1D2232E8A3009B43BE /* BookshelfCell.swift */; };
 		A9F4ED302232E8A3009B43BE /* ThumbnailGridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9F4ED1E2232E8A3009B43BE /* ThumbnailGridCell.xib */; };
 		A9F4ED312232E8A3009B43BE /* BookshelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F4ED1F2232E8A3009B43BE /* BookshelfViewController.swift */; };
-		A9F4ED322232E8A3009B43BE /* ActionMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F4ED202232E8A3009B43BE /* ActionMenuViewController.swift */; };
 		A9F4ED332232E8A3009B43BE /* SearchResultsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9F4ED212232E8A3009B43BE /* SearchResultsCell.xib */; };
 		A9F4ED342232E8A3009B43BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9F4ED222232E8A3009B43BE /* LaunchScreen.storyboard */; };
 		A9F4ED352232E8A3009B43BE /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F4ED232232E8A3009B43BE /* BookmarkViewController.swift */; };
@@ -62,7 +61,6 @@
 		A9F4ED1D2232E8A3009B43BE /* BookshelfCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookshelfCell.swift; sourceTree = "<group>"; };
 		A9F4ED1E2232E8A3009B43BE /* ThumbnailGridCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThumbnailGridCell.xib; sourceTree = "<group>"; };
 		A9F4ED1F2232E8A3009B43BE /* BookshelfViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookshelfViewController.swift; sourceTree = "<group>"; };
-		A9F4ED202232E8A3009B43BE /* ActionMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionMenuViewController.swift; sourceTree = "<group>"; };
 		A9F4ED212232E8A3009B43BE /* SearchResultsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultsCell.xib; sourceTree = "<group>"; };
 		A9F4ED222232E8A3009B43BE /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A9F4ED232232E8A3009B43BE /* BookmarkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
@@ -130,7 +128,6 @@
 		A9F4ED112232E876009B43BE /* Book Reader */ = {
 			isa = PBXGroup;
 			children = (
-				A9F4ED202232E8A3009B43BE /* ActionMenuViewController.swift */,
 				A9F4ED172232E8A2009B43BE /* AppearanceViewController.swift */,
 				A9F4ED192232E8A2009B43BE /* Assets.xcassets */,
 				A9F4ED232232E8A3009B43BE /* BookmarkViewController.swift */,
@@ -277,7 +274,6 @@
 				A9F4ED2E2232E8A3009B43BE /* ThumbnailGridViewController.swift in Sources */,
 				A9F4ED2F2232E8A3009B43BE /* BookshelfCell.swift in Sources */,
 				A9F4ED352232E8A3009B43BE /* BookmarkViewController.swift in Sources */,
-				A9F4ED322232E8A3009B43BE /* ActionMenuViewController.swift in Sources */,
 				A9F4ED2A2232E8A3009B43BE /* OutlineViewController.swift in Sources */,
 				A9F4ED272232E8A3009B43BE /* OutlineCell.swift in Sources */,
 			);

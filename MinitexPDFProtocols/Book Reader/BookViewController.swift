@@ -12,7 +12,7 @@ import MessageUI
 import UIKit.UIGestureRecognizerSubclass
 
 @available(iOS 11.0, *)
-class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverPresentationControllerDelegate, PDFViewDelegate, ActionMenuViewControllerDelegate, SearchViewControllerDelegate, ThumbnailGridViewControllerDelegate, OutlineViewControllerDelegate, BookmarkViewControllerDelegate {
+class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverPresentationControllerDelegate, PDFViewDelegate, SearchViewControllerDelegate, ThumbnailGridViewControllerDelegate, OutlineViewControllerDelegate, BookmarkViewControllerDelegate {
 
     var delegate: MinitexPDFViewControllerDelegate?
 
@@ -112,24 +112,6 @@ class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverP
         return .none
     }
 
-    func actionMenuViewControllerShareDocument(_ actionMenuViewController: ActionMenuViewController) {
-        let mailComposeViewController = MFMailComposeViewController()
-        if let lastPathComponent = pdfDocument?.documentURL?.lastPathComponent,
-            let documentAttributes = pdfDocument?.documentAttributes,
-            let attachmentData = pdfDocument?.dataRepresentation() {
-            if let title = documentAttributes["Title"] as? String {
-                mailComposeViewController.setSubject(title)
-            }
-            mailComposeViewController.addAttachmentData(attachmentData, mimeType: "application/pdf", fileName: lastPathComponent)
-        }
-    }
-
-    func actionMenuViewControllerPrintDocument(_ actionMenuViewController: ActionMenuViewController) {
-        let printInteractionController = UIPrintInteractionController.shared
-        printInteractionController.printingItem = pdfDocument?.dataRepresentation()
-        printInteractionController.present(animated: true, completionHandler: nil)
-    }
-
     func searchViewController(_ searchViewController: SearchViewController, didSelectSearchResult selection: PDFSelection) {
         selection.color = .yellow
         pdfView.currentSelection = selection
@@ -155,8 +137,7 @@ class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverP
     private func resume() {
         let backButton = UIBarButtonItem(image: (#imageLiteral(resourceName: "Chevron") as WrappedBundleImage).image, style: .plain, target: self, action: #selector(back(_:)))
         let tableOfContentsButton = UIBarButtonItem(image: (#imageLiteral(resourceName: "List") as WrappedBundleImage).image, style: .plain, target: self, action: #selector(showTableOfContents(_:)))
-        let actionButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(showActionMenu(_:)))
-        navigationItem.leftBarButtonItems = [backButton, tableOfContentsButton, actionButton]
+        navigationItem.leftBarButtonItems = [backButton, tableOfContentsButton]
 
         let brightnessButton = UIBarButtonItem(image: (#imageLiteral(resourceName: "Brightness") as WrappedBundleImage).image, style: .plain, target: self, action: #selector(showAppearanceMenu(_:)))
         let searchButton = UIBarButtonItem(image: (#imageLiteral(resourceName: "Search") as WrappedBundleImage).image, style: .plain, target: self, action: #selector(showSearchView(_:)))
@@ -204,18 +185,6 @@ class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverP
 
     @objc func showTableOfContents(_ sender: UIBarButtonItem) {
         showTableOfContents()
-    }
-
-    @objc func showActionMenu(_ sender: UIBarButtonItem) {
-        if let viewController = storyboard?.instantiateViewController(withIdentifier: String(describing: ActionMenuViewController.self)) as? ActionMenuViewController {
-            viewController.modalPresentationStyle = .popover
-            viewController.preferredContentSize = CGSize(width: 300, height: 88)
-            viewController.popoverPresentationController?.barButtonItem = sender
-            viewController.popoverPresentationController?.permittedArrowDirections = .up
-            viewController.popoverPresentationController?.delegate = self
-            viewController.delegate = self
-            present(viewController, animated: true, completion: nil)
-        }
     }
 
     @objc func showAppearanceMenu(_ sender: UIBarButtonItem) {
