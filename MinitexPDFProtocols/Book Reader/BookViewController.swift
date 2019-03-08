@@ -59,6 +59,9 @@ class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverP
         barHideOnTapGestureRecognizer.addTarget(self, action: #selector(gestureRecognizedToggleVisibility(_:)))
         view.addGestureRecognizer(barHideOnTapGestureRecognizer)
 
+        for index in 0..<tableOfContentsToggleSegmentedControl.numberOfSegments {
+            tableOfContentsToggleSegmentedControl.setWidth(60.0, forSegmentAt: index)
+        }
         tableOfContentsToggleSegmentedControl.selectedSegmentIndex = 0
         tableOfContentsToggleSegmentedControl.addTarget(self, action: #selector(toggleTableOfContentsView(_:)), for: .valueChanged)
 
