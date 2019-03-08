@@ -139,10 +139,9 @@ class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverP
         let tableOfContentsButton = UIBarButtonItem(image: (#imageLiteral(resourceName: "List") as WrappedBundleImage).image, style: .plain, target: self, action: #selector(showTableOfContents(_:)))
         navigationItem.leftBarButtonItems = [backButton, tableOfContentsButton]
 
-        let brightnessButton = UIBarButtonItem(image: (#imageLiteral(resourceName: "Brightness") as WrappedBundleImage).image, style: .plain, target: self, action: #selector(showAppearanceMenu(_:)))
         let searchButton = UIBarButtonItem(image: (#imageLiteral(resourceName: "Search") as WrappedBundleImage).image, style: .plain, target: self, action: #selector(showSearchView(_:)))
         bookmarkButton = UIBarButtonItem(image: (#imageLiteral(resourceName: "Bookmark-N") as WrappedBundleImage).image, style: .plain, target: self, action: #selector(addOrRemoveBookmark(_:)))
-        navigationItem.rightBarButtonItems = [bookmarkButton, searchButton, brightnessButton]
+        navigationItem.rightBarButtonItems = [bookmarkButton, searchButton]
 
         pdfThumbnailViewContainer.alpha = 1
 
@@ -185,17 +184,6 @@ class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverP
 
     @objc func showTableOfContents(_ sender: UIBarButtonItem) {
         showTableOfContents()
-    }
-
-    @objc func showAppearanceMenu(_ sender: UIBarButtonItem) {
-        if let viewController = storyboard?.instantiateViewController(withIdentifier: String(describing: AppearanceViewController.self)) as? AppearanceViewController {
-            viewController.modalPresentationStyle = .popover
-            viewController.preferredContentSize = CGSize(width: 300, height: 44)
-            viewController.popoverPresentationController?.barButtonItem = sender
-            viewController.popoverPresentationController?.permittedArrowDirections = .up
-            viewController.popoverPresentationController?.delegate = self
-            present(viewController, animated: true, completion: nil)
-        }
     }
 
     @objc func showSearchView(_ sender: UIBarButtonItem) {
