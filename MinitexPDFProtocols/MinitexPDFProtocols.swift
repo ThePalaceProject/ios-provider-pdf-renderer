@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-
+import PDFKit
 
 /// A generic annotation in a PDF document.
 @objc public protocol MinitexPDFAnnotation: class {
@@ -119,8 +119,15 @@ import UIKit
     if let pdfViewControllerClass = NSClassFromString("PDF.PDFViewController") as? MinitexPDFViewController.Type {
       return pdfViewControllerClass.init(file: fileUrl, openToPage: page, bookmarks: bookmarks, annotations: annotations)
     } else {
-      // PDF renderer using Apple's PDFKit.
-      fatalError()  //placeholder
+      if #available(iOS 11.0, *) {
+        // PDF renderer using Apple's PDFKit.
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle(identifier: "edu.umn.minitex.simplye.MinitexPDFProtocols")!)
+        let bookViewController = storyboard.instantiateViewController(withIdentifier: "BookViewController") as! BookViewController
+        bookViewController.pdfDocument = PDFDocument(url: fileUrl)
+        return bookViewController as MinitexPDFViewController
+      } else {
+        return nil
+      }
     }
   }
 }
