@@ -11,6 +11,23 @@
 		52EB73722092676E003E8D00 /* MinitexPDFProtocolsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EB73712092676E003E8D00 /* MinitexPDFProtocolsTests.swift */; };
 		52EB73742092676E003E8D00 /* MinitexPDFProtocols.h in Headers */ = {isa = PBXBuildFile; fileRef = 52EB73662092676E003E8D00 /* MinitexPDFProtocols.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		52EB737E2092678D003E8D00 /* MinitexPDFProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EB737D2092678D003E8D00 /* MinitexPDFProtocols.swift */; };
+		A9F4ED242232E8A3009B43BE /* ThumbnailGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F4ED122232E8A2009B43BE /* ThumbnailGridCell.swift */; };
+		A9F4ED252232E8A3009B43BE /* BookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F4ED132232E8A2009B43BE /* BookViewController.swift */; };
+		A9F4ED272232E8A3009B43BE /* OutlineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F4ED152232E8A2009B43BE /* OutlineCell.swift */; };
+		A9F4ED282232E8A3009B43BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9F4ED162232E8A2009B43BE /* Main.storyboard */; };
+		A9F4ED292232E8A3009B43BE /* AppearanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F4ED172232E8A2009B43BE /* AppearanceViewController.swift */; };
+		A9F4ED2A2232E8A3009B43BE /* OutlineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F4ED182232E8A2009B43BE /* OutlineViewController.swift */; };
+		A9F4ED2B2232E8A3009B43BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9F4ED192232E8A2009B43BE /* Assets.xcassets */; };
+		A9F4ED2C2232E8A3009B43BE /* SearchResultsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F4ED1A2232E8A2009B43BE /* SearchResultsCell.swift */; };
+		A9F4ED2D2232E8A3009B43BE /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F4ED1B2232E8A2009B43BE /* SearchViewController.swift */; };
+		A9F4ED2E2232E8A3009B43BE /* ThumbnailGridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F4ED1C2232E8A2009B43BE /* ThumbnailGridViewController.swift */; };
+		A9F4ED2F2232E8A3009B43BE /* BookshelfCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F4ED1D2232E8A3009B43BE /* BookshelfCell.swift */; };
+		A9F4ED302232E8A3009B43BE /* ThumbnailGridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9F4ED1E2232E8A3009B43BE /* ThumbnailGridCell.xib */; };
+		A9F4ED312232E8A3009B43BE /* BookshelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F4ED1F2232E8A3009B43BE /* BookshelfViewController.swift */; };
+		A9F4ED322232E8A3009B43BE /* ActionMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F4ED202232E8A3009B43BE /* ActionMenuViewController.swift */; };
+		A9F4ED332232E8A3009B43BE /* SearchResultsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9F4ED212232E8A3009B43BE /* SearchResultsCell.xib */; };
+		A9F4ED342232E8A3009B43BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9F4ED222232E8A3009B43BE /* LaunchScreen.storyboard */; };
+		A9F4ED352232E8A3009B43BE /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F4ED232232E8A3009B43BE /* BookmarkViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +48,23 @@
 		52EB73712092676E003E8D00 /* MinitexPDFProtocolsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinitexPDFProtocolsTests.swift; sourceTree = "<group>"; };
 		52EB73732092676E003E8D00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52EB737D2092678D003E8D00 /* MinitexPDFProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinitexPDFProtocols.swift; sourceTree = "<group>"; };
+		A9F4ED122232E8A2009B43BE /* ThumbnailGridCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThumbnailGridCell.swift; sourceTree = "<group>"; };
+		A9F4ED132232E8A2009B43BE /* BookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookViewController.swift; sourceTree = "<group>"; };
+		A9F4ED152232E8A2009B43BE /* OutlineCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutlineCell.swift; sourceTree = "<group>"; };
+		A9F4ED162232E8A2009B43BE /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		A9F4ED172232E8A2009B43BE /* AppearanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceViewController.swift; sourceTree = "<group>"; };
+		A9F4ED182232E8A2009B43BE /* OutlineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutlineViewController.swift; sourceTree = "<group>"; };
+		A9F4ED192232E8A2009B43BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A9F4ED1A2232E8A2009B43BE /* SearchResultsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsCell.swift; sourceTree = "<group>"; };
+		A9F4ED1B2232E8A2009B43BE /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		A9F4ED1C2232E8A2009B43BE /* ThumbnailGridViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThumbnailGridViewController.swift; sourceTree = "<group>"; };
+		A9F4ED1D2232E8A3009B43BE /* BookshelfCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookshelfCell.swift; sourceTree = "<group>"; };
+		A9F4ED1E2232E8A3009B43BE /* ThumbnailGridCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThumbnailGridCell.xib; sourceTree = "<group>"; };
+		A9F4ED1F2232E8A3009B43BE /* BookshelfViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookshelfViewController.swift; sourceTree = "<group>"; };
+		A9F4ED202232E8A3009B43BE /* ActionMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionMenuViewController.swift; sourceTree = "<group>"; };
+		A9F4ED212232E8A3009B43BE /* SearchResultsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultsCell.xib; sourceTree = "<group>"; };
+		A9F4ED222232E8A3009B43BE /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A9F4ED232232E8A3009B43BE /* BookmarkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +110,7 @@
 				52EB73662092676E003E8D00 /* MinitexPDFProtocols.h */,
 				52EB73672092676E003E8D00 /* Info.plist */,
 				52EB737D2092678D003E8D00 /* MinitexPDFProtocols.swift */,
+				A9F4ED112232E876009B43BE /* Book Reader */,
 			);
 			path = MinitexPDFProtocols;
 			sourceTree = "<group>";
@@ -87,6 +122,30 @@
 				52EB73732092676E003E8D00 /* Info.plist */,
 			);
 			path = MinitexPDFProtocolsTests;
+			sourceTree = "<group>";
+		};
+		A9F4ED112232E876009B43BE /* Book Reader */ = {
+			isa = PBXGroup;
+			children = (
+				A9F4ED202232E8A3009B43BE /* ActionMenuViewController.swift */,
+				A9F4ED172232E8A2009B43BE /* AppearanceViewController.swift */,
+				A9F4ED192232E8A2009B43BE /* Assets.xcassets */,
+				A9F4ED232232E8A3009B43BE /* BookmarkViewController.swift */,
+				A9F4ED1D2232E8A3009B43BE /* BookshelfCell.swift */,
+				A9F4ED1F2232E8A3009B43BE /* BookshelfViewController.swift */,
+				A9F4ED132232E8A2009B43BE /* BookViewController.swift */,
+				A9F4ED222232E8A3009B43BE /* LaunchScreen.storyboard */,
+				A9F4ED162232E8A2009B43BE /* Main.storyboard */,
+				A9F4ED152232E8A2009B43BE /* OutlineCell.swift */,
+				A9F4ED182232E8A2009B43BE /* OutlineViewController.swift */,
+				A9F4ED1A2232E8A2009B43BE /* SearchResultsCell.swift */,
+				A9F4ED212232E8A3009B43BE /* SearchResultsCell.xib */,
+				A9F4ED1B2232E8A2009B43BE /* SearchViewController.swift */,
+				A9F4ED122232E8A2009B43BE /* ThumbnailGridCell.swift */,
+				A9F4ED1E2232E8A3009B43BE /* ThumbnailGridCell.xib */,
+				A9F4ED1C2232E8A2009B43BE /* ThumbnailGridViewController.swift */,
+			);
+			path = "Book Reader";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,6 +241,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9F4ED2B2232E8A3009B43BE /* Assets.xcassets in Resources */,
+				A9F4ED302232E8A3009B43BE /* ThumbnailGridCell.xib in Resources */,
+				A9F4ED332232E8A3009B43BE /* SearchResultsCell.xib in Resources */,
+				A9F4ED342232E8A3009B43BE /* LaunchScreen.storyboard in Resources */,
+				A9F4ED282232E8A3009B43BE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,7 +263,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9F4ED312232E8A3009B43BE /* BookshelfViewController.swift in Sources */,
+				A9F4ED252232E8A3009B43BE /* BookViewController.swift in Sources */,
+				A9F4ED2C2232E8A3009B43BE /* SearchResultsCell.swift in Sources */,
+				A9F4ED2D2232E8A3009B43BE /* SearchViewController.swift in Sources */,
+				A9F4ED242232E8A3009B43BE /* ThumbnailGridCell.swift in Sources */,
 				52EB737E2092678D003E8D00 /* MinitexPDFProtocols.swift in Sources */,
+				A9F4ED292232E8A3009B43BE /* AppearanceViewController.swift in Sources */,
+				A9F4ED2E2232E8A3009B43BE /* ThumbnailGridViewController.swift in Sources */,
+				A9F4ED2F2232E8A3009B43BE /* BookshelfCell.swift in Sources */,
+				A9F4ED352232E8A3009B43BE /* BookmarkViewController.swift in Sources */,
+				A9F4ED322232E8A3009B43BE /* ActionMenuViewController.swift in Sources */,
+				A9F4ED2A2232E8A3009B43BE /* OutlineViewController.swift in Sources */,
+				A9F4ED272232E8A3009B43BE /* OutlineCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,7 +432,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = MinitexPDFProtocols/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -385,7 +461,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = MinitexPDFProtocols/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
