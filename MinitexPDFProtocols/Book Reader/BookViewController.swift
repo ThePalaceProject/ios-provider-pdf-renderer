@@ -15,6 +15,8 @@ import UIKit.UIGestureRecognizerSubclass
 class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverPresentationControllerDelegate, PDFViewDelegate, SearchViewControllerDelegate, ThumbnailGridViewControllerDelegate, OutlineViewControllerDelegate, BookmarkViewControllerDelegate {
 
     var delegate: MinitexPDFViewControllerDelegate?
+    var firstPage: UInt?
+    var bookmarks = [Int]()
 
     required init?(file: URL,
                    openToPage page: MinitexPDFPage?,
@@ -82,7 +84,13 @@ class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverP
         pageNumberLabelContainer.layer.cornerRadius = 4
 
         resume()
+
+        if let firstPage = self.firstPage,
+            let page = pdfView.document?.page(at: Int(firstPage)) {
+            pdfView.go(to: page)
+        }
     }
+
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         adjustThumbnailViewHeight()
@@ -107,6 +115,7 @@ class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverP
             viewController.delegate = self
         } else if let viewController = segue.destination as? BookmarkViewController {
             viewController.pdfDocument = pdfDocument
+            viewController.bookmarks = self.bookmarks
             viewController.delegate = self
         }
     }
@@ -203,18 +212,18 @@ class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverP
     }
 
     @objc func addOrRemoveBookmark(_ sender: UIBarButtonItem) {
-        if let documentURL = pdfDocument?.documentURL?.absoluteString {
-            var bookmarks = UserDefaults.standard.array(forKey: documentURL) as? [Int] ?? [Int]()
-            if let currentPage = pdfView.currentPage,
-                let pageIndex = pdfDocument?.index(for: currentPage) {
-                if let index = bookmarks.index(of: pageIndex) {
-                    bookmarks.remove(at: index)
-                    UserDefaults.standard.set(bookmarks, forKey: documentURL)
-                    bookmarkButton.image = (#imageLiteral(resourceName: "Bookmark-N") as WrappedBundleImage).image
-                } else {
-                    UserDefaults.standard.set((bookmarks + [pageIndex]).sorted(), forKey: documentURL)
-                    bookmarkButton.image = (#imageLiteral(resourceName: "Bookmark-P") as WrappedBundleImage).image
-                }
+        if let currentPage = pdfView.currentPage,
+            let pageIndex = pdfDocument?.index(for: currentPage) {
+            if let index = bookmarks.index(of: pageIndex) {
+                self.bookmarks.remove(at: index)
+                bookmarkButton.image = (#imageLiteral(resourceName: "Bookmark-N") as WrappedBundleImage).image
+                let mark = DefaultMinitexPDFPage(pageNumber: UInt(pageIndex))
+                self.delegate?.userDidDelete(bookmark: mark)
+            } else {
+                self.bookmarks = (bookmarks + [pageIndex]).sorted()
+                bookmarkButton.image = (#imageLiteral(resourceName: "Bookmark-P") as WrappedBundleImage).image
+                let mark = DefaultMinitexPDFPage(pageNumber: UInt(pageIndex))
+                self.delegate?.userDidCreate(bookmark: mark)
             }
         }
     }
@@ -245,6 +254,11 @@ class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverP
         }
         updateBookmarkStatus()
         updatePageNumberLabel()
+        if let currentPage = pdfView.currentPage,
+            let pageIndex = pdfDocument?.index(for: currentPage) {
+            let page = DefaultMinitexPDFPage(pageNumber: UInt(pageIndex))
+            self.delegate?.userDidNavigate(toPage: page)
+        }
     }
 
     @objc func gestureRecognizedToggleVisibility(_ gestureRecognizer: UITapGestureRecognizer) {
@@ -258,11 +272,9 @@ class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverP
     }
 
     private func updateBookmarkStatus() {
-        if let documentURL = pdfDocument?.documentURL?.absoluteString,
-            let bookmarks = UserDefaults.standard.array(forKey: documentURL) as? [Int],
-            let currentPage = pdfView.currentPage,
+        if let currentPage = pdfView.currentPage,
             let index = pdfDocument?.index(for: currentPage) {
-            bookmarkButton.image = bookmarks.contains(index) ? (#imageLiteral(resourceName: "Bookmark-P") as WrappedBundleImage).image : (#imageLiteral(resourceName: "Bookmark-N") as WrappedBundleImage).image
+            bookmarkButton.image = self.bookmarks.contains(index) ? (#imageLiteral(resourceName: "Bookmark-P") as WrappedBundleImage).image : (#imageLiteral(resourceName: "Bookmark-N") as WrappedBundleImage).image
         }
     }
 

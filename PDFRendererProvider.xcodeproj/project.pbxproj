@@ -11,6 +11,7 @@
 		52EB73722092676E003E8D00 /* MinitexPDFProtocolsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EB73712092676E003E8D00 /* MinitexPDFProtocolsTests.swift */; };
 		52EB73742092676E003E8D00 /* MinitexPDFProtocols.h in Headers */ = {isa = PBXBuildFile; fileRef = 52EB73662092676E003E8D00 /* MinitexPDFProtocols.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		52EB737E2092678D003E8D00 /* MinitexPDFProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EB737D2092678D003E8D00 /* MinitexPDFProtocols.swift */; };
+		A9CC610B22331B3A0035C722 /* DefaultMinitexImplementations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CC610A22331B3A0035C722 /* DefaultMinitexImplementations.swift */; };
 		A9F4ED242232E8A3009B43BE /* ThumbnailGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F4ED122232E8A2009B43BE /* ThumbnailGridCell.swift */; };
 		A9F4ED252232E8A3009B43BE /* BookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F4ED132232E8A2009B43BE /* BookViewController.swift */; };
 		A9F4ED272232E8A3009B43BE /* OutlineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F4ED152232E8A2009B43BE /* OutlineCell.swift */; };
@@ -48,6 +49,7 @@
 		52EB73712092676E003E8D00 /* MinitexPDFProtocolsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinitexPDFProtocolsTests.swift; sourceTree = "<group>"; };
 		52EB73732092676E003E8D00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52EB737D2092678D003E8D00 /* MinitexPDFProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinitexPDFProtocols.swift; sourceTree = "<group>"; };
+		A9CC610A22331B3A0035C722 /* DefaultMinitexImplementations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMinitexImplementations.swift; sourceTree = "<group>"; };
 		A9F4ED122232E8A2009B43BE /* ThumbnailGridCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThumbnailGridCell.swift; sourceTree = "<group>"; };
 		A9F4ED132232E8A2009B43BE /* BookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookViewController.swift; sourceTree = "<group>"; };
 		A9F4ED152232E8A2009B43BE /* OutlineCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutlineCell.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				52EB73662092676E003E8D00 /* MinitexPDFProtocols.h */,
 				52EB73672092676E003E8D00 /* Info.plist */,
 				52EB737D2092678D003E8D00 /* MinitexPDFProtocols.swift */,
+				A9CC610A22331B3A0035C722 /* DefaultMinitexImplementations.swift */,
 				A9F4ED382232F74D009B43BE /* MinitexUtilities.swift */,
 				A9F4ED112232E876009B43BE /* Book Reader */,
 			);
@@ -263,6 +266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9CC610B22331B3A0035C722 /* DefaultMinitexImplementations.swift in Sources */,
 				A9F4ED312232E8A3009B43BE /* BookshelfViewController.swift in Sources */,
 				A9F4ED252232E8A3009B43BE /* BookViewController.swift in Sources */,
 				A9F4ED2C2232E8A3009B43BE /* SearchResultsCell.swift in Sources */,

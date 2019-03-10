@@ -115,15 +115,22 @@ import PDFKit
                             bookmarks: [MinitexPDFPage]?,
                             annotations: [MinitexPDFAnnotation]?) -> MinitexPDFViewController? {
 
-    // PDF renderer using a PSPDFKit license.
     if let pdfViewControllerClass = NSClassFromString("PDF.PDFViewController") as? MinitexPDFViewController.Type {
+      // PDF renderer using PSPDFKit SDK.
       return pdfViewControllerClass.init(file: fileUrl, openToPage: page, bookmarks: bookmarks, annotations: annotations)
     } else {
       if #available(iOS 11.0, *) {
         // PDF renderer using Apple's PDFKit.
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle(identifier: "edu.umn.minitex.simplye.MinitexPDFProtocols")!)
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.pdfRendererProvider()!)
         let bookViewController = storyboard.instantiateViewController(withIdentifier: "BookViewController") as! BookViewController
         bookViewController.pdfDocument = PDFDocument(url: fileUrl)
+        if let page = page {
+            bookViewController.firstPage = page.pageNumber
+        }
+        if let bookmarks = bookmarks {
+            let intBookmarks = bookmarks.map { Int($0.pageNumber) }
+            bookViewController.bookmarks = intBookmarks
+        }
         return bookViewController as MinitexPDFViewController
       } else {
         return nil

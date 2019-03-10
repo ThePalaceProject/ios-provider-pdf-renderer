@@ -12,7 +12,7 @@ import PDFKit
 @available(iOS 11.0, *)
 class BookmarkViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     var pdfDocument: PDFDocument?
-    var bookmarks = [Int]()
+    var bookmarks: [Int]!
 
     weak var delegate: BookmarkViewControllerDelegate?
 
@@ -42,7 +42,6 @@ class BookmarkViewController: UICollectionViewController, UICollectionViewDelega
 
         collectionView?.register(UINib(nibName: String(describing: ThumbnailGridCell.self), bundle: Bundle.pdfRendererProvider()!), forCellWithReuseIdentifier: "Cell")
 
-        NotificationCenter.default.addObserver(self, selector: #selector(userDefaultsDidChange(_:)), name: UserDefaults.didChangeNotification, object: nil)
         refreshData()
     }
 
@@ -93,15 +92,7 @@ class BookmarkViewController: UICollectionViewController, UICollectionViewDelega
     }
 
     private func refreshData() {
-        if let documentURL = pdfDocument?.documentURL?.absoluteString,
-            let bookmarks = UserDefaults.standard.array(forKey: documentURL) as? [Int] {
-            self.bookmarks = bookmarks
-            collectionView?.reloadData()
-        }
-    }
-
-    @objc func userDefaultsDidChange(_ notification: Notification) {
-        refreshData()
+        collectionView?.reloadData()
     }
 }
 
