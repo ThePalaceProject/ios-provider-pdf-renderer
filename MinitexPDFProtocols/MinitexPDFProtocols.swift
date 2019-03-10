@@ -17,7 +17,15 @@ import UIKit
 
   /// Complex annotations may be fully described by something like JSON from a particular
   /// renderer. This allows easy access by the host to a version it can store or sync.
-  var serializedRepresentation: Data { get }
+  ///
+  /// - Returns: A data representation of the annotation, like from a JSON encoder.
+  func toData() -> Data
+
+  /// Conversely, an annotation should be able to be reconstructed from the serialized data.
+  ///
+  /// - Parameter data: The serialized data.
+  /// - Returns: An instance of an annotation.
+  static func fromData(_ data: Data) -> MinitexPDFAnnotation?
 }
 
 /// The View Controller for the PDF document.
@@ -39,9 +47,29 @@ import UIKit
 }
 
 /// A page in a PDF document.
-@objc public protocol MinitexPDFPage: class {
+@objcMembers public class MinitexPDFPage : NSObject, Codable {
   /// A PDF document must have an unsigned integer represenation of its pages.
-  var pageNumber: UInt { get }
+  let pageNumber: UInt
+
+  init(pageNumber: UInt) {
+    self.pageNumber = pageNumber
+  }
+
+  /// Complex annotations may be fully described by something like JSON from a particular
+  /// renderer. This allows easy access by the host to a version it can store or sync.
+  ///
+  /// - Returns: A data representation of the annotation, like from a JSON encoder.
+  public func toData() -> Data {
+    return try! JSONEncoder().encode(self)
+  }
+
+  /// Conversely, an annotation should be able to be reconstructed from the serialized data.
+  ///
+  /// - Parameter data: The serialized data.
+  /// - Returns: An instance of an annotation.
+  public class func fromData(_ data: Data) -> MinitexPDFPage? {
+    return try? JSONDecoder().decode(MinitexPDFPage.self, from: data)
+  }
 }
 
 @objc public protocol MinitexPDFViewControllerDelegate: class {
