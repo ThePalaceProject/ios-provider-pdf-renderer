@@ -217,12 +217,12 @@ class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverP
             if let index = bookmarks.index(of: pageIndex) {
                 self.bookmarks.remove(at: index)
                 bookmarkButton.image = (#imageLiteral(resourceName: "Bookmark-N") as WrappedBundleImage).image
-                let mark = DefaultMinitexPDFPage(pageNumber: UInt(pageIndex))
+                let mark = MinitexPDFPage(pageNumber: UInt(pageIndex))
                 self.delegate?.userDidDelete(bookmark: mark)
             } else {
                 self.bookmarks = (bookmarks + [pageIndex]).sorted()
                 bookmarkButton.image = (#imageLiteral(resourceName: "Bookmark-P") as WrappedBundleImage).image
-                let mark = DefaultMinitexPDFPage(pageNumber: UInt(pageIndex))
+                let mark = MinitexPDFPage(pageNumber: UInt(pageIndex))
                 self.delegate?.userDidCreate(bookmark: mark)
             }
         }
@@ -256,7 +256,7 @@ class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverP
         updatePageNumberLabel()
         if let currentPage = pdfView.currentPage,
             let pageIndex = pdfDocument?.index(for: currentPage) {
-            let page = DefaultMinitexPDFPage(pageNumber: UInt(pageIndex))
+            let page = MinitexPDFPage(pageNumber: UInt(pageIndex))
             self.delegate?.userDidNavigate(toPage: page)
         }
     }
