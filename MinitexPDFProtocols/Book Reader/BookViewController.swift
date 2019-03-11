@@ -45,6 +45,7 @@ class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverP
     @IBOutlet weak var thumbnailGridViewConainer: UIView!
     @IBOutlet weak var outlineViewConainer: UIView!
     @IBOutlet weak var bookmarkViewConainer: UIView!
+    var bookmarkViewController: BookmarkViewController?
 
     var bookmarkButton: UIBarButtonItem!
 
@@ -114,8 +115,8 @@ class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverP
             viewController.pdfDocument = pdfDocument
             viewController.delegate = self
         } else if let viewController = segue.destination as? BookmarkViewController {
+            self.bookmarkViewController = viewController
             viewController.pdfDocument = pdfDocument
-            viewController.bookmarks = self.bookmarks
             viewController.delegate = self
         }
     }
@@ -214,15 +215,14 @@ class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverP
     @objc func addOrRemoveBookmark(_ sender: UIBarButtonItem) {
         if let currentPage = pdfView.currentPage,
             let pageIndex = pdfDocument?.index(for: currentPage) {
+            let mark = MinitexPDFPage(pageNumber: UInt(pageIndex))
             if let index = bookmarks.index(of: pageIndex) {
-                self.bookmarks.remove(at: index)
                 bookmarkButton.image = (#imageLiteral(resourceName: "Bookmark-N") as WrappedBundleImage).image
-                let mark = MinitexPDFPage(pageNumber: UInt(pageIndex))
+                self.bookmarks.remove(at: index)
                 self.delegate?.userDidDelete(bookmark: mark)
             } else {
-                self.bookmarks = (bookmarks + [pageIndex]).sorted()
                 bookmarkButton.image = (#imageLiteral(resourceName: "Bookmark-P") as WrappedBundleImage).image
-                let mark = MinitexPDFPage(pageNumber: UInt(pageIndex))
+                self.bookmarks = (bookmarks + [pageIndex]).sorted()
                 self.delegate?.userDidCreate(bookmark: mark)
             }
         }
@@ -244,6 +244,7 @@ class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverP
         } else {
             thumbnailGridViewConainer.isHidden = true
             outlineViewConainer.isHidden = true
+            self.bookmarkViewController?.refreshData()
             bookmarkViewConainer.isHidden = false
         }
     }

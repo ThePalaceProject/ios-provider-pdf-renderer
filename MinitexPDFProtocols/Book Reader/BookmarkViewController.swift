@@ -12,9 +12,8 @@ import PDFKit
 @available(iOS 11.0, *)
 class BookmarkViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     var pdfDocument: PDFDocument?
-    var bookmarks: [Int]!
 
-    weak var delegate: BookmarkViewControllerDelegate?
+    weak var delegate: BookmarkViewControllerDelegate!
 
     let thumbnailCache = NSCache<NSNumber, UIImage>()
     private let downloadQueue = DispatchQueue(label: "com.kishikawakatsumi.pdfviewer.thumbnail")
@@ -50,13 +49,14 @@ class BookmarkViewController: UICollectionViewController, UICollectionViewDelega
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return bookmarks.count
+        NSLog("CollectionView: bookmarks count: \(self.delegate.bookmarks)")
+        return self.delegate.bookmarks.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! ThumbnailGridCell
 
-        let pageNumber = bookmarks[indexPath.item]
+        let pageNumber = self.delegate.bookmarks[indexPath.item]
         if let page = pdfDocument?.page(at: pageNumber) {
             cell.pageNumber = pageNumber
 
@@ -81,7 +81,7 @@ class BookmarkViewController: UICollectionViewController, UICollectionViewDelega
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let page = pdfDocument?.page(at: bookmarks[indexPath.item]) {
+        if let page = pdfDocument?.page(at: self.delegate.bookmarks[indexPath.item]) {
             delegate?.bookmarkViewController(self, didSelectPage: page)
         }
         collectionView.deselectItem(at: indexPath, animated: true)
@@ -91,12 +91,13 @@ class BookmarkViewController: UICollectionViewController, UICollectionViewDelega
         return cellSize
     }
 
-    private func refreshData() {
+    func refreshData() {
         collectionView?.reloadData()
     }
 }
 
 @available(iOS 11.0, *)
 protocol BookmarkViewControllerDelegate: class {
+    var bookmarks: [Int] { get }
     func bookmarkViewController(_ bookmarkViewController: BookmarkViewController, didSelectPage page: PDFPage)
 }
