@@ -7,68 +7,134 @@
 //
 
 import Foundation
+import UIKit
+import PDFKit
 
-// the items that are marked required are needed to
-// recreate an annotation in PSPDFKit later
-@objc public class MinitexPDFAnnotation: NSObject, Codable {
-  // required
-  public let pageIndex: UInt
-  // required
-  public let type: String
-  // required
-  public let bbox: String
-  // required
-  public let rects: [String]
+/// A generic annotation in a PDF document.
+@objc public protocol MinitexPDFAnnotation: class {
+  /// An annotation must belong to one page of the PDF document.
+  var page: MinitexPDFPage { get }
 
-  // optional
-  public let color: String?
-  // optional
-  public let opacity: Float?
-  // optional
-  // we store this in case the field parsing fails, then we have the original JSON
-  public let JSONData: Data?
+  /// Complex annotations may be fully described by something like JSON from a particular
+  /// renderer. This allows easy access by the host to a version it can store or sync.
+  ///
+  /// - Returns: A data representation of the annotation, like from a JSON encoder.
+  func toData() -> Data
 
-  // optional
-  // this value cannot be set in PSPDFKit
-  //var v: Int?
+  /// Conversely, an annotation should be able to be reconstructed from the serialized data.
+  ///
+  /// - Parameter data: The serialized data.
+  /// - Returns: An instance of an annotation.
+  static func fromData(_ data: Data) -> MinitexPDFAnnotation?
+}
 
-  public init(pageIndex: UInt, type: String, bbox: String, rects: [String],
-              color: String?, opacity: Float?, JSONData: Data?) {
-    self.pageIndex = pageIndex
-    self.type = type
-    self.bbox = bbox
-    self.rects = rects
-    self.color = color
-    self.opacity = opacity
-    self.JSONData = JSONData
+/// The View Controller for the PDF document.
+@objc public protocol MinitexPDFViewController: class {
+  /// The host can optionally set a delegate object to listen for certain events.
+  var delegate: MinitexPDFViewControllerDelegate? { get set }
+
+  /// Initialize a view controller with a particular PDF document.
+  ///
+  /// - Parameters:
+  ///   - file: The local file directory of the PDF document.
+  ///   - page: An optional page to navigate to when first opening.
+  ///   - bookmarks: Any additional user-saved bookmarks.
+  ///   - annotations: Any additional user-created generic annotations.
+  init?(file: URL,
+        openToPage page: MinitexPDFPage?,
+        bookmarks: [MinitexPDFPage]?,
+        annotations: [MinitexPDFAnnotation]?)
+}
+
+/// A page in a PDF document.
+@objcMembers public class MinitexPDFPage : NSObject, Codable {
+  /// A PDF document must have an unsigned integer represenation of its pages.
+  let pageNumber: UInt
+
+  init(pageNumber: UInt) {
+    self.pageNumber = pageNumber
+  }
+
+  /// Complex annotations may be fully described by something like JSON from a particular
+  /// renderer. This allows easy access by the host to a version it can store or sync.
+  ///
+  /// - Returns: A data representation of the annotation, like from a JSON encoder.
+  public func toData() -> Data {
+    return try! JSONEncoder().encode(self)
+  }
+
+  /// Conversely, an annotation should be able to be reconstructed from the serialized data.
+  ///
+  /// - Parameter data: The serialized data.
+  /// - Returns: An instance of an annotation.
+  public class func fromData(_ data: Data) -> MinitexPDFPage? {
+    return try? JSONDecoder().decode(MinitexPDFPage.self, from: data)
   }
 }
 
-
-@objc public protocol MinitexPDFViewController: class {
-  // we have to pass in a dictionary because @objc protocol function
-  // cannot accept multiple parameters
-  @objc init(dictionary: [String: Any])
-}
-
-
 @objc public protocol MinitexPDFViewControllerDelegate: class {
-  @objc func userDidNavigate(page: Int)
-  @objc func saveBookmarks(pageNumbers: [UInt])
-  @objc func saveAnnotations(annotations: [MinitexPDFAnnotation])
-  @objc func willMoveToMinitexParentController(parent: UIViewController?)
+  /// Called when a page of the PDF document becomes the new presented page
+  /// visible on screen.
+  ///
+  /// - Parameter page: The page being presented on screen.
+  func userDidNavigate(toPage page: MinitexPDFPage)
+  /// Called when a user selects to create a bookmark for a specific page.
+  ///
+  /// - Parameter bookmark: The specific page the user has selected to save as a
+  ///   bookmark.
+  func userDidCreate(bookmark: MinitexPDFPage)
+  /// Called when a user selects to delete a bookmark for a specific page.
+  ///
+  /// - Parameter bookmark: The specific page the user has selected to delete.
+  func userDidDelete(bookmark: MinitexPDFPage)
+  /// Called when a user selects to create a generic annotation for a specific page.
+  ///
+  /// - Parameter bookmark: The specific generic annotation the user has selected to save as a
+  ///   bookmark.
+  func userDidCreate(annotation: MinitexPDFAnnotation)
+  /// Called when a user selects to delete a generic annotation for a specific page.
+  ///
+  /// - Parameter bookmark: The specific generic annotation the user has selected to delete.
+  func userDidDelete(annotation: MinitexPDFAnnotation)
 }
 
+//MARK: -
+//MARK: Factory Methods
 
-@objc public class MinitexPDFViewControllerFactory: NSObject {
-  @objc public static func createPDFViewController(dictionary: [String: Any]) -> MinitexPDFViewController? {
+@objcMembers public class MinitexPDFViewControllerFactory: NSObject {
+  /// The API host must create a View Controller for the PDF from a static factory method.
+  ///
+  /// - Parameters:
+  ///   - fileUrl: The local file directory of the PDF document.
+  ///   - page: An optional page to navigate to when first opening.
+  ///   - bookmarks: Any additional user-saved bookmarks.
+  ///   - annotations: Any additional user-created generic annotations.
+  /// - Returns: An instance of MinitexPDFViewController, or nil if something failed.
+  public static func create(fileUrl: URL,
+                            openToPage page: MinitexPDFPage?,
+                            bookmarks: [MinitexPDFPage]?,
+                            annotations: [MinitexPDFAnnotation]?) -> MinitexPDFViewController? {
 
-    guard let pdfViewControllerClass = NSClassFromString("PDF.PDFViewController")
-                                        as? MinitexPDFViewController.Type else {
-      return nil
+    if let pdfViewControllerClass = NSClassFromString("PDF.PDFViewController") as? MinitexPDFViewController.Type {
+      // PDF renderer using PSPDFKit SDK.
+      return pdfViewControllerClass.init(file: fileUrl, openToPage: page, bookmarks: bookmarks, annotations: annotations)
+    } else {
+      if #available(iOS 11.0, *) {
+        // PDF renderer using Apple's PDFKit.
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.pdfRendererProvider()!)
+        let bookViewController = storyboard.instantiateViewController(withIdentifier: "BookViewController") as! BookViewController
+        bookViewController.pdfDocument = PDFDocument(url: fileUrl)
+        if let page = page {
+            bookViewController.firstPage = page.pageNumber
+        }
+        if let bookmarks = bookmarks {
+            let intBookmarks = bookmarks.map { Int($0.pageNumber) }
+            bookViewController.bookmarks = intBookmarks
+        }
+        return bookViewController as MinitexPDFViewController
+      } else {
+        return nil
+      }
     }
-
-    let pdfViewController = pdfViewControllerClass.init(dictionary: dictionary)
-    return pdfViewController
   }
 }
