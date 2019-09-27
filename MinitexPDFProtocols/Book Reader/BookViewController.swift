@@ -57,8 +57,6 @@ class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverP
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        NotificationCenter.default.addObserver(self, selector: #selector(pdfViewPageChanged(_:)), name: .PDFViewPageChanged, object: nil)
-
         barHideOnTapGestureRecognizer.addTarget(self, action: #selector(gestureRecognizedToggleVisibility(_:)))
         view.addGestureRecognizer(barHideOnTapGestureRecognizer)
 
@@ -71,7 +69,7 @@ class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverP
         pdfView.autoScales = true
         pdfView.displayMode = .singlePage
         pdfView.displayDirection = .horizontal
-      pdfView.usePageViewController(true, withViewOptions: [UIPageViewController.OptionsKey.interPageSpacing: 20])
+        pdfView.usePageViewController(true, withViewOptions: [UIPageViewController.OptionsKey.interPageSpacing: 20])
 
         pdfView.addGestureRecognizer(pdfViewGestureRecognizer)
 
@@ -90,6 +88,9 @@ class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverP
             let page = pdfView.document?.page(at: Int(firstPage)) {
             pdfView.go(to: page)
         }
+
+        // Add observer last because setting `pdfView.displayMode` triggers `pdfViewPageChanged` and that depends on `resume()` to init things
+        NotificationCenter.default.addObserver(self, selector: #selector(pdfViewPageChanged(_:)), name: .PDFViewPageChanged, object: nil)
     }
 
     override func viewWillLayoutSubviews() {
