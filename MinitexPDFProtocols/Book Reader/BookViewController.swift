@@ -82,12 +82,12 @@ class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverP
         titleLabelContainer.layer.cornerRadius = 4
         pageNumberLabelContainer.layer.cornerRadius = 4
 
-        resume()
-
         if let firstPage = self.firstPage,
             let page = pdfView.document?.page(at: Int(firstPage)) {
             pdfView.go(to: page)
         }
+
+        resume()
 
         // Add observer last because setting `pdfView.displayMode` triggers `pdfViewPageChanged` and that depends on `resume()` to init things
         NotificationCenter.default.addObserver(self, selector: #selector(pdfViewPageChanged(_:)), name: .PDFViewPageChanged, object: nil)
