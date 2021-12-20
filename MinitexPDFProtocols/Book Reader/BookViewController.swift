@@ -155,6 +155,7 @@ class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverP
 
         let searchButton = UIBarButtonItem(image: (#imageLiteral(resourceName: "Search") as WrappedBundleImage).image, style: .plain, target: self, action: #selector(showSearchView(_:)))
         bookmarkButton = UIBarButtonItem(image: (#imageLiteral(resourceName: "Bookmark-N") as WrappedBundleImage).image, style: .plain, target: self, action: #selector(addOrRemoveBookmark(_:)))
+        bookmarkButton.accessibilityLabel = NSLocalizedString("Add Bookmark", comment: "")
         navigationItem.rightBarButtonItems = [bookmarkButton, searchButton]
 
         pdfThumbnailViewContainer.alpha = 1
@@ -219,10 +220,12 @@ class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverP
             let mark = MinitexPDFPage(pageNumber: UInt(pageIndex))
             if let index = bookmarks.index(of: pageIndex) {
                 bookmarkButton.image = (#imageLiteral(resourceName: "Bookmark-N") as WrappedBundleImage).image
+                bookmarkButton.accessibilityLabel = NSLocalizedString("Add Bookmark", comment: "")
                 self.bookmarks.remove(at: index)
                 self.delegate?.userDidDelete(bookmark: mark)
             } else {
                 bookmarkButton.image = (#imageLiteral(resourceName: "Bookmark-P") as WrappedBundleImage).image
+                bookmarkButton.accessibilityLabel = NSLocalizedString("Remove Bookmark", comment: "")
                 self.bookmarks = (bookmarks + [pageIndex]).sorted()
                 self.delegate?.userDidCreate(bookmark: mark)
             }
