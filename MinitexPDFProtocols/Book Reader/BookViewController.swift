@@ -219,15 +219,13 @@ class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverP
             let pageIndex = pdfDocument?.index(for: currentPage) {
             let mark = MinitexPDFPage(pageNumber: UInt(pageIndex))
             if let index = bookmarks.index(of: pageIndex) {
-                bookmarkButton.image = (#imageLiteral(resourceName: "Bookmark-N") as WrappedBundleImage).image
-                bookmarkButton.accessibilityLabel = NSLocalizedString("Add Bookmark", comment: "")
                 self.bookmarks.remove(at: index)
                 self.delegate?.userDidDelete(bookmark: mark)
+                updateBookmarkButton(isBookmarked: false)
             } else {
-                bookmarkButton.image = (#imageLiteral(resourceName: "Bookmark-P") as WrappedBundleImage).image
-                bookmarkButton.accessibilityLabel = NSLocalizedString("Remove Bookmark", comment: "")
                 self.bookmarks = (bookmarks + [pageIndex]).sorted()
                 self.delegate?.userDidCreate(bookmark: mark)
+                updateBookmarkButton(isBookmarked: true)
             }
         }
     }
@@ -279,7 +277,7 @@ class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverP
     private func updateBookmarkStatus() {
         if let currentPage = pdfView.currentPage,
             let index = pdfDocument?.index(for: currentPage) {
-            bookmarkButton.image = self.bookmarks.contains(index) ? (#imageLiteral(resourceName: "Bookmark-P") as WrappedBundleImage).image : (#imageLiteral(resourceName: "Bookmark-N") as WrappedBundleImage).image
+            updateBookmarkButton(isBookmarked: bookmarks.contains(index))
         }
     }
 
@@ -310,6 +308,16 @@ class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverP
                 self.titleLabelContainer.alpha = 0
                 self.pageNumberLabelContainer.alpha = 0
             }
+        }
+    }
+    
+    private func updateBookmarkButton(isBookmarked: Bool) {
+        if isBookmarked {
+            bookmarkButton.image = (#imageLiteral(resourceName: "Bookmark-P") as WrappedBundleImage).image
+            bookmarkButton.accessibilityLabel = NSLocalizedString("Remove Bookmark", comment: "")
+        } else {
+            bookmarkButton.image = (#imageLiteral(resourceName: "Bookmark-N") as WrappedBundleImage).image
+            bookmarkButton.accessibilityLabel = NSLocalizedString("Add Bookmark", comment: "")
         }
     }
 }
