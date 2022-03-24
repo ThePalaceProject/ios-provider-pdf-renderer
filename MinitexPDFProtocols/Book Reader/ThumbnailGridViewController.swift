@@ -62,8 +62,12 @@ class ThumbnailGridViewController: UICollectionViewController, UICollectionViewD
             } else {
                 let size = cellSize
                 downloadQueue.async {
-                    let thumbnail = page.thumbnail(of: size, for: .cropBox)
-                    self.thumbnailCache.setObject(thumbnail, forKey: key)
+                    // page.thumbnail(of:for:) can return uninitialized UIImage pointer,
+                    // we should use optional type to avoid crashes in this case
+                    let thumbnail: UIImage? = page.thumbnail(of: size, for: .cropBox)
+                    if let thumbnail = thumbnail {
+                        self.thumbnailCache.setObject(thumbnail, forKey: key)
+                    }
                     if cell.pageNumber == pageNumber {
                         DispatchQueue.main.async {
                             cell.image = thumbnail
