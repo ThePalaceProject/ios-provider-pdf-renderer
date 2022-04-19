@@ -51,14 +51,10 @@ class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverP
 
     var searchNavigationController: UINavigationController?
 
-    let barHideOnTapGestureRecognizer = UITapGestureRecognizer()
     let pdfViewGestureRecognizer = PDFViewGestureRecognizer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        barHideOnTapGestureRecognizer.addTarget(self, action: #selector(gestureRecognizedToggleVisibility(_:)))
-        view.addGestureRecognizer(barHideOnTapGestureRecognizer)
 
         for index in 0..<tableOfContentsToggleSegmentedControl.numberOfSegments {
             tableOfContentsToggleSegmentedControl.setWidth(60.0, forSegmentAt: index)
@@ -70,10 +66,19 @@ class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverP
         pdfView.displayMode = .singlePage
         pdfView.displayDirection = .horizontal
         pdfView.usePageViewController(true, withViewOptions: [UIPageViewController.OptionsKey.interPageSpacing: 20])
-
-        pdfView.addGestureRecognizer(pdfViewGestureRecognizer)
-
+      
+        pdfViewGestureRecognizer.onTouchEnded({ touches in
+            if let touchPoint = touches.first?.location(in: self.pdfView) {
+                let elementTapped = self.pdfView.areaOfInterest(for: touchPoint)
+                // If the tapped element is not interactive, change bar visibility
+                if elementTapped.intersection([.linkArea, .controlArea, .popupArea, .textFieldArea]).isEmpty {
+                    self.toggleBars()
+                }
+            }
+        })
+        
         pdfView.document = pdfDocument
+        pdfView.addGestureRecognizer(pdfViewGestureRecognizer)
 
         pdfThumbnailView.layoutMode = .horizontal
         pdfThumbnailView.pdfView = pdfView
@@ -166,8 +171,6 @@ class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverP
         thumbnailGridViewConainer.isHidden = true
         outlineViewConainer.isHidden = true
 
-        barHideOnTapGestureRecognizer.isEnabled = true
-
         updateBookmarkStatus()
         updatePageNumberLabel()
     }
@@ -185,8 +188,6 @@ class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverP
         pdfThumbnailViewContainer.alpha = 0
 
         toggleTableOfContentsView(tableOfContentsToggleSegmentedControl)
-
-        barHideOnTapGestureRecognizer.isEnabled = false
     }
 
     @objc func resume(_ sender: UIBarButtonItem) {
@@ -288,7 +289,18 @@ class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverP
             pageNumberLabel.text = nil
         }
     }
-
+    
+    /// Toggle top and bottom bar visibility
+    private func toggleBars() {
+        if let navigationController = self.navigationController {
+            if navigationController.navigationBar.alpha > 0 {
+                self.hideBars()
+            } else {
+                self.showBars()
+            }
+        }
+    }
+    
     private func showBars() {
         if let navigationController = navigationController {
             UIView.animate(withDuration: CATransaction.animationDuration()) {
@@ -324,13 +336,20 @@ class BookViewController: UIViewController, MinitexPDFViewController, UIPopoverP
 
 class PDFViewGestureRecognizer: UIGestureRecognizer {
     var isTracking = false
-
+    
+    var touchCompletion: ((_ touches: Set<UITouch>) -> Void)?
+    
+    func onTouchEnded(_ touchCompleted: @escaping (_ touches: Set<UITouch>) -> Void) {
+        self.touchCompletion = touchCompleted
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
         isTracking = true
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent) {
         isTracking = false
+        touchCompletion?(touches)
     }
 
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent) {

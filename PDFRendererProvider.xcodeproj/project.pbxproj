@@ -93,7 +93,9 @@
 				52EB73702092676E003E8D00 /* MinitexPDFProtocolsTests */,
 				52EB73642092676D003E8D00 /* Products */,
 			);
+			indentWidth = 4;
 			sourceTree = "<group>";
+			tabWidth = 4;
 		};
 		52EB73642092676D003E8D00 /* Products */ = {
 			isa = PBXGroup;
